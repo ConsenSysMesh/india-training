@@ -1,0 +1,24 @@
+{
+  "name": "india-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "bluebird": "^3.5.1",
+    "colors": "^1.2.4",
+    "ethereumjs-wallet": "^0.6.0",
+    "fs": "^0.0.1-security",
+    "prompt": "^1.0.0",
+    "solc": "0.4.20",
+    "util": "^0.10.3",
+    "web3": "^1.0.0-beta.34",
+    "web3-provider-engine": "^14.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
