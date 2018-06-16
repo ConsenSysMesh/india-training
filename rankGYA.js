@@ -17,17 +17,34 @@ for (i = 0; i < students.length; i++) {
     promises.push(
       instance.methods.balanceOf(students[i].address.toLowerCase()).call()
       .then((result) => {
-        if (parseInt(result) > 0) {
-          map.set(result, students[i].name);
-        }
+        map.set(students[i].name, result);
         return Promise.resolve(0);
       })
     );
   })(i);
 }
 
+
 Promise.all(promises)
 .then(() => {
-  var sorted = new Map([...map.entries()].sort((a, b) => {return parseInt(b) - parseInt(a)}));
-  console.log(sorted);
+  map[Symbol.iterator] = function* () {
+      yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
+  }
+  console.log('');
+  var counter = 0;
+  for (let [key, value] of map) {     // get data sorted
+    var ksize = key.length;
+    var vsize = (''+value).length;
+    var comp = '';
+    for (i = 0; i < 40 - ksize - vsize; i++) {
+       comp += '-';
+    }
+    if (counter < 10 && value > 5000) {
+      console.log(colors.green('\t' + key + comp + value));
+    } else {
+      console.log(colors.yellow('\t' + key + comp + value));
+    }
+    counter++;
+  }
+  console.log('');
 });
