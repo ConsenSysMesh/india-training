@@ -39,10 +39,12 @@ Promise.all(promises)
     for (i = 0; i < 40 - ksize - vsize; i++) {
        comp += '-';
     }
-    if (counter < 10 && value > 5000) {
-      console.log(colors.green('\t' + key + comp + value));
+    var sp = ' ';
+    if (counter < 9) sp += ' ';
+    if (value > 5000) {
+      console.log(colors.green('\t' + sp + (counter+1) + ' - ' + key + comp + value));
     } else {
-      console.log(colors.yellow('\t' + key + comp + value));
+      console.log(colors.yellow('\t' + sp + (counter+1) + ' - ' + key + comp + value));
     }
     counter++;
   }
