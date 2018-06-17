@@ -25,7 +25,7 @@
     },
   {
     "name": "Archita Panda",
-    "address" : "0xD6c29cDC677f514859eE5BCb5AA6A91D6BA478c0"
+    "address" : "0x6E49E4d51Bd5895e325a38838C0f8B7d5A59884a"
     },
   {
     "name": "Ashish",
@@ -41,19 +41,19 @@
     },
   {
     "name": "Deepak Kumar Mishra",
-    "address" : "0xB97594325361329bA9DaD0c1d94B65F80713696c"
+    "address" : "0x8b2949429484109E4A16D3a80C84bD4c1A9AA26B"
     },
   {
     "name": "Khaja Moinuddin Mohammed",
-    "address" : "0x4b097Ea7EFb6542FDE37D0193cb25cCb6ab0cFc1"
+    "address" : "0x12C1f91d709cCFc7681BA60cb6266F4a8dC872FE"
     },
   {
     "name": "Kiran Kommineni",
-    "address" : "0xE70105f7abC020A0676e2A24D3d73b201e44eE5C"
+    "address" : "0xc795a1e662b0d5847bfde3a26e78cd7e10370f78"
     },
   {
     "name": "Krishna Sai Chumudupati",
-    "address" : "0xCbEccf64F9bEFda02c1813cA528Ec771e3186Fd6"
+    "address" : "0x305bD0369C46A4e56D69b3B68EfA829fe38a3495"
     },
   {
     "name": "Mandeep Singh",
@@ -61,7 +61,7 @@
     },
   {
     "name": "Mani Maukthika Nemalikanti",
-    "address" : "0xd41883f7451Fc950F82e13376CD9aAa54bac31cF"
+    "address" : "0x46409C8AD0AFcBD693cbd615Ae140B6ED58659be"
     },
   {
     "name": "Manish Agarwal",
@@ -158,5 +158,9 @@
   {
     "name": "Vyshnavi Adusumelli",
     "address" : "0x150d6de9948dbc885ab843B04dABEbB7E05BD1ef"
+    },
+  {
+    "name": "Vishu Bandari",
+    "address" : "0x75D602929B4C504D2da3176269D9Edb00c539e74"
     }
 ]
