@@ -54,6 +54,10 @@ Prompt.get(schema, function(err, result) {
 
   var input = {'Input': contractCode}
   var output = solc.compile({sources: input}, 1);
+  if (output.errors.length > 0) {
+    console.log(JSON.stringify(output.errors));
+    process.exit();
+  }
   var contractName = result.contractName;
   var contractBinary = output.contracts['Input:' + contractName].bytecode;
   var contractABI    = output.contracts['Input:' + contractName].interface;
