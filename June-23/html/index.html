@@ -5,6 +5,9 @@
    <script src="./SimpleRegistry.js"></script>
    <script>
 
+   var account;
+   var contract;
+
     $(function() {
 
         // Checking if Web3 has been injected by the browser (Mist/MetaMask)
@@ -14,40 +17,38 @@
           web3js = new Web3(web3.currentProvider);
           $("#metamask").text('Web3 loaded, version ' + web3.version.api);
 
+          var abi = JSON.parse(window.contractAbi);
+          var address = window.contractAddress;
+
+          var interval = setInterval(function() {
+            web3.eth.getAccounts(function(err, result) {
+              if (typeof result[0] != 'undefined') {
+                //clearInterval(interval);
+                //$('#metamask').css({color: 'black'});
+                //$('#metamask').text('MetaMask unlocked');
+                if (account == null) {
+                  account = result[0];
+                  console.log('==>' + account);
+                  contract = new web3js.eth.Contract(abi, address, {
+                    from: result[0],
+                  });
+                } else {
+                  if (account !== result[0]) {
+                    account = result[0];
+                    console.log('==>' + account);
+                    contract = new web3js.eth.Contract(abi, address, {
+                      from: result[0],
+                    });
+                  }
+                }
+              }
+            });
+          }, 1000);
+
         } else {
           $('#metamask').text('Ops, MetaMask is not installed!');
         }
 
-        web3.eth.getAccounts(function(err, result) {
-
-          var abi = JSON.parse(window.contractAbi);
-          var address = window.contractAddress;
-
-          if (typeof result[0] == 'undefined') {
-
-            $('#metamask').css({color: 'red'});
-            $('#metamask').text('MetaMask is locked! Open it and enter your password to unlock.');
-
-            var interval = setInterval(function() {
-              web3.eth.getAccounts(function(err, result) {
-                if (typeof result[0] != 'undefined') {
-                  clearInterval(interval);
-                  $('#metamask').css({color: 'black'});
-                  $('#metamask').text('MetaMask unlocked');
-                  contract = new web3js.eth.Contract(abi, address, {
-                    from: result[0],
-                  });
-                }
-              });
-            }, 500);
-
-          } else {
-            contract = new web3js.eth.Contract(abi, address, {
-              from: result[0],
-            });
-          }
-
-        });
 
     });
 
