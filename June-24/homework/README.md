@@ -39,6 +39,9 @@ Also, do all the checks you feel necessary. Think that this
 contract is for real and will hold millions of dollars and YOU,
 and only YOU, are responsible for it.
 
+After finishing, your contract's address should be added into
+the file `india-training/June-24/homework/homework.txt`.
+
 # Web Interface
 
 A very simple web interface would show the contract current
