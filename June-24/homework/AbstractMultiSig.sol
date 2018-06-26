@@ -7,6 +7,16 @@ interface AbstractMultiSig {
    * any contribution (Ethers).
    */
   event ReceivedContribution(address indexed _contributor, uint value);
+  
+  /*
+   * When this contract is initially created, it's in the state 
+   * "Accepting contributions". No proposals can be sent, no withdraw
+   * and no vote can be made while in this state. After this function
+   * is called, the contract state changes to "Active" in which it will
+   * not accept contributions anymore and will accept all other functions
+   * (submit proposal, vote, withdraw)
+   */
+  function endContributionPeriod() external;
 
   /*
    * Sends a withdraw proposal to the contract. The beneficiary would
