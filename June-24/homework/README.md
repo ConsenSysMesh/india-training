@@ -42,6 +42,16 @@ and only YOU, are responsible for it.
 After finishing, your contract's address should be added into
 the file `india-training/June-24/homework/homework.txt`.
 
+# Appended text following suggestions from Anish
+
+There should be a "contribution" period, in which the contract
+will only receive contributions, and a "active" period, in which
+the contract will NOT receive contributions anymore and proposals
+can now be submitted.
+
+To simplify things, contribution period will end after a given
+function is called, "endContributionPeriod()".
+
 # Web Interface
 
 A very simple web interface would show the contract current
