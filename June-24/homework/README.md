@@ -50,7 +50,8 @@ the contract will NOT receive contributions anymore and proposals
 can now be submitted.
 
 To simplify things, contribution period will end after a given
-function is called, "endContributionPeriod()".
+function is called, "endContributionPeriod()". This function can 
+be called by any of the signers of the contract.
 
 # Web Interface
 
