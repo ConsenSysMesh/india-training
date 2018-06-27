@@ -6,10 +6,10 @@ interface AbstractMultiSig {
    * This event should be dispatched whenever the contract receives
    * any contribution.
    */
-  event ReceivedContribution(address indexed _contributor, uint valueInWei);
-  
+  event ReceivedContribution(address indexed _contributor, uint _valueInWei);
+
   /*
-   * When this contract is initially created, it's in the state 
+   * When this contract is initially created, it's in the state
    * "Accepting contributions". No proposals can be sent, no withdraw
    * and no vote can be made while in this state. After this function
    * is called, the contract state changes to "Active" in which it will
@@ -25,8 +25,8 @@ interface AbstractMultiSig {
    *
    * This contract should be able to handle many proposals at once.
    */
-  function submitProposal(uint _value) external;
-  event ProposalSubmitted(address indexed _beneficiary, uint _value);
+  function submitProposal(uint _valueInWei) external;
+  event ProposalSubmitted(address indexed _beneficiary, uint _valueInWei);
 
   /*
    * Returns a list of beneficiaries for the open proposals. Open
@@ -55,13 +55,13 @@ interface AbstractMultiSig {
    * Approve the proposal for the given beneficiary
    */
   function approve(address _beneficiary) external;
-  event ProposalApproved(address indexed _approver, address indexed _beneficiary, uint _value);
+  event ProposalApproved(address indexed _approver, address indexed _beneficiary, uint _valueInWei);
 
   /*
    * Reject the proposal of the given beneficiary
    */
   function reject(address _beneficiary) external;
-  event ProposalRejected(address indexed _approver, address indexed _beneficiary, uint _value);
+  event ProposalRejected(address indexed _approver, address indexed _beneficiary, uint _valueInWei);
 
   /*
    * Withdraw the specified value in Wei from the wallet.
@@ -70,7 +70,7 @@ interface AbstractMultiSig {
    * should be sent.
    *
    */
-  function withdraw(uint _value) external;
-  event WithdrawPerformed(address indexed beneficiary, uint _value);
+  function withdraw(uint _valueInWei) external;
+  event WithdrawPerformed(address indexed beneficiary, uint _valueInWei);
 
 }
