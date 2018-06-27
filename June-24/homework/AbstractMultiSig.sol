@@ -3,6 +3,12 @@ pragma solidity ^0.4.20;
 interface AbstractMultiSig {
 
   /*
+   * This function should return the onwer of this contract or whoever you
+   * want to receive the Gyaan Tokens reward if it's coded correctly.
+   */
+  function owner() external returns(address);
+
+  /*
    * This event should be dispatched whenever the contract receives
    * any contribution.
    */
@@ -71,6 +77,6 @@ interface AbstractMultiSig {
    *
    */
   function withdraw(uint _valueInWei) external;
-  event WithdrawPerformed(address indexed beneficiary, uint _valueInWei);
+  event WithdrawPerformed(address indexed _beneficiary, uint _valueInWei);
 
 }
