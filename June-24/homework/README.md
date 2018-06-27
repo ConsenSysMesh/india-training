@@ -7,13 +7,16 @@ heart of it.
 In the second part, due to other week, you should develop
 a web interface to interact with the contract.
 
+The goal of this homework
 # Contract Description
 
 Take a look at the solidity interface file `AbstractMultiSig.sol`.
 It has a list of all the functions your contract should implement.
 
-Your task is to build a multisig smart contract. In order
-words, a contract that will only release Ethers after
+Your task is to is to develop a decentralized fund (a fund controlled
+by a smart contract) that will be able to fund projects through
+proposals. The wallet of the fund will be a multi-sig wallet.
+In order words, a contract that will only release Ethers after
 receiving approval of the majority of voters.
 
 The voters (or signers of the contract) are specified in
@@ -50,7 +53,7 @@ the contract will NOT receive contributions anymore and proposals
 can now be submitted.
 
 To simplify things, contribution period will end after a given
-function is called, "endContributionPeriod()". This function can 
+function is called, "endContributionPeriod()". This function can
 be called by any of the signers of the contract.
 
 # Web Interface
