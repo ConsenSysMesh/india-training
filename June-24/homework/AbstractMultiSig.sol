@@ -4,9 +4,9 @@ interface AbstractMultiSig {
 
   /*
    * This event should be dispatched whenever the contract receives
-   * any contribution (Ethers).
+   * any contribution.
    */
-  event ReceivedContribution(address indexed _contributor, uint value);
+  event ReceivedContribution(address indexed _contributor, uint valueInWei);
   
   /*
    * When this contract is initially created, it's in the state 
@@ -47,7 +47,7 @@ interface AbstractMultiSig {
   function listContributors() external view returns (address[]);
 
   /*
-   * Returns the amount sent by the given contributor.
+   * Returns the amount sent by the given contributor in Wei.
    */
   function getContributorAmount(address _contributor) external view returns (uint);
 
@@ -64,7 +64,7 @@ interface AbstractMultiSig {
   event ProposalRejected(address indexed _approver, address indexed _beneficiary, uint _value);
 
   /*
-   * Withdraw the specified value from the wallet.
+   * Withdraw the specified value in Wei from the wallet.
    * The beneficiary can withdraw any value less than or equal the value
    * he/she proposed. If he/she wants to withdraw more, a new proposal
    * should be sent.
