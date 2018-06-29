@@ -21,7 +21,7 @@
     },
   {
     "name": "Anurag Jain",
-    "address" : "0xdF3cff3F151D5ee3cA3644267ADB7f290130045E"
+    "address" : "0x6458031099B7372a4374766cE0a0EB8421fd9f6B"
     },
   {
     "name": "Archita Panda",
@@ -33,7 +33,7 @@
     },
   {
     "name": "Chintapalli Naveena",
-    "address" : "0x9311D2bc5fE45B36d9d0ADfCe444531A7152B3eC"
+    "address" : "0x18F63E23a9F5c583C2F9827770AEAF9A3d0EDBF0"
     },
   {
     "name": "Deepak",
@@ -57,7 +57,7 @@
     },
   {
     "name": "Mandeep Singh",
-    "address" : "0xC2ef97A7232AC96691fa46Fe5305868BF89f0739"
+    "address" : "0x4E828d2cE71cc1fc9233902945D9f452c61Cc465"
     },
   {
     "name": "Mani Maukthika Nemalikanti",
@@ -84,7 +84,7 @@
     "address" : "0x659923A6c022d01Cc0264Af0121a64DDf6b599D6"
     },
   {
-    "name": "phool chand yadav",
+    "name": "Phool Chand Yadav",
     "address" : "0xD60931B2566D5af26ac329F5391296cca215f700"
     },
   {
@@ -104,7 +104,7 @@
     "address" : "0x8AD7800AAED53DF8ca8f93400bb8EC4e0a021ECC"
     },
   {
-    "name": "sai sarvani chavva",
+    "name": "Sai Sarvani Chavva",
     "address" : "0xbEF2a675B83bAF61FDBCE2618200be0b0DaC9F0A"
     },
   {
@@ -132,7 +132,7 @@
     "address" : "0xB413D11612D0E2574E6B3481005e3a6153072759"
     },
   {
-    "name": "tarun gupta",
+    "name": "Tarun Gupta",
     "address" : "0xa02d9c2978389904c8A67c7F38CAbB7DD21C7b2e"
     },
   {
@@ -144,7 +144,7 @@
     "address" : "0x7c8a99ce6C94164Ab62A659cBd52195BAc34D24F"
     },
   {
-    "name": "venkatesh mankena",
+    "name": "Venkatesh Mankena",
     "address" : "0x54d5B55a9C5F9A731b71bEe3F32a20368cbf860b"
     },
   {
@@ -162,5 +162,9 @@
   {
     "name": "Vishu Bandari",
     "address" : "0x75D602929B4C504D2da3176269D9Edb00c539e74"
+    },
+  {
+    "name": "Mayank Sengar",
+    "address" : "0xF6888b865952126FAd4f0b86EA59a6672065fD7D"
     }
 ]

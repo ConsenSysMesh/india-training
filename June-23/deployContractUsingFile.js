@@ -54,7 +54,7 @@ Prompt.get(schema, function(err, result) {
 
   var input = {'Input': contractCode}
   var output = solc.compile({sources: input}, 1);
-  if (typeof output.errors != 'undefined') {
+  if (typeof output.errors !== 'undefined') {
     console.log(JSON.stringify(output.errors));
     process.exit();
   }

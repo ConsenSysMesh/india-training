@@ -1,0 +1,85 @@
+<html>
+ <head>
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="./web3.min.js"></script>
+   <script src="./SimpleRegistry.js"></script>
+   <script>
+
+   var account;
+   var contract;
+
+    $(function() {
+
+        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+        if (typeof web3 !== 'undefined') {
+
+          // Use Mist/MetaMask provider
+          web3js = new Web3(web3.currentProvider);
+          $("#metamask").text('Web3 loaded, version ' + web3.version.api);
+
+          var abi = JSON.parse(window.contractAbi);
+          var address = window.contractAddress;
+
+          var interval = setInterval(function() {
+            web3.eth.getAccounts(function(err, result) {
+              if (typeof result[0] != 'undefined') {
+                //clearInterval(interval);
+                //$('#metamask').css({color: 'black'});
+                //$('#metamask').text('MetaMask unlocked');
+                if (account == null) {
+                  account = result[0];
+                  console.log('==>' + account);
+                  contract = new web3js.eth.Contract(abi, address, {
+                    from: result[0],
+                  });
+                } else {
+                  if (account !== result[0]) {
+                    account = result[0];
+                    console.log('==>' + account);
+                    contract = new web3js.eth.Contract(abi, address, {
+                      from: result[0],
+                    });
+                  }
+                }
+              }
+            });
+          }, 1000);
+
+        } else {
+          $('#metamask').text('Ops, MetaMask is not installed!');
+        }
+
+
+    });
+
+    function register() {
+      var newValue = $('#newValue').val();
+      console.log('new: ' + newValue);
+      contract.methods.register('test', newValue).send()
+      .on('transactionHash', function(hash) {
+        $('#txid').text(hash);
+      })
+      .on('receipt', function(receipt) {
+        $('#receipt').text(JSON.stringify(receipt));
+      });
+    }
+
+    function get() {
+      contract.methods.get('test').call(function(err, result) {
+        console.log('err: ' + err);
+        $('#result').text(result);
+      });
+    }
+
+   </script>
+ </head>
+ <body>
+   <div id='metamask'></div>
+   <div id='account'></div>
+   <button onClick='javascript:get()'>Get</button>
+   <div id='result'></div>
+   <button onClick='javascript:register()'>Register</button><input id='newValue'>
+   <div id='txid'></div>
+   <div id='receipt'></div>
+ </body>
+</html>

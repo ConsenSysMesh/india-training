@@ -2,10 +2,11 @@ const Prompt = require('prompt');
 const fs     = require('fs');
 const Wallet = require('ethereumjs-wallet');
 const colors = require('colors/safe');
-const solc   = require('solc');
 const Web3   = require('web3');
 
 const EthereumTx = require('ethereumjs-tx');
+
+const promisify = require('bluebird').promisify;
 
 var web3 = new Web3();
 web3.setProvider(new web3.providers.HttpProvider('http://gyaan.network:8545'));
@@ -23,14 +24,10 @@ var schema = {
             hidden: true,
             required: true,
         },
-        contractFilename: {
-            description: colors.yellow('Contract filename'),
+        contractBinary: {
+            description: colors.yellow('Contract binary'),
             required: true,
         },
-        contractName: {
-            description: colors.yellow('Contract name'),
-            required: true,
-        }
     }
 };
 
@@ -42,35 +39,16 @@ Prompt.get(schema, function(err, result) {
     process.exit();
   }
 
-  if (!fs.existsSync(result.contractFilename)) {
-    console.log(colors.red('\n\tContract file not found: ' + result.contractFilename + '\n'));
-    process.exit();
-  }
-
   var strJson = fs.readFileSync(result.walletFilename, 'utf8');
-  var wallet = Wallet.fromV3(strJson, result.password);
-
-  var contractCode = fs.readFileSync(result.contractFilename, 'utf8');
-
-  var input = {'Input': contractCode}
-  var output = solc.compile({sources: input}, 1);
-  if (typeof output.errors != 'undefined') {
-    console.log(JSON.stringify(output.errors));
-    process.exit();
-  }
-  var contractName = result.contractName;
-  var contractBinary = output.contracts['Input:' + contractName].bytecode;
-  var contractABI    = output.contracts['Input:' + contractName].interface;
-  var abi = JSON.stringify(contractABI);
-  abi = abi.substring(1);
-  abi = abi.substring(0, abi.length - 1);
+  var wallet  = Wallet.fromV3(strJson, result.password);
+  var binary = result.contractBinary;
 
   var nonce, gasPrice;
 
-  web3.eth.getTransactionCount(wallet.getChecksumAddressString())
+  promisify(web3.eth.getTransactionCount)(wallet.getChecksumAddressString())
   .then((numberOfTxs) => {
     nonce = numberOfTxs;
-    return web3.eth.getGasPrice();
+    return promisify(web3.eth.getGasPrice)();
   })
   .then((price) => {
     gasPrice = web3.utils.toBN(price);
@@ -79,7 +57,7 @@ Prompt.get(schema, function(err, result) {
       nonce:    '0x' + nonce.toString(16),
       gasPrice: '0x' + gasPrice.toString(16),
       gasLimit: '0x' + gasLimit.toString(16),
-      data:     '0x' + contractBinary,
+      data:     '0x' + binary,
     };
 
     var tx = new EthereumTx(txParams);
@@ -93,8 +71,6 @@ Prompt.get(schema, function(err, result) {
     })
     .on('receipt', function(receipt) {
       console.log(colors.green("\tContract address: " + receipt.contractAddress));
-      saveFile(contractName, abi, receipt.contractAddress);
-      console.log(colors.yellow('Saved deployed contract info into the file ' + contractName + '.js'));
     })
     .on('error', function(error) {
       console.log("ERROR" + error);
@@ -103,13 +79,5 @@ Prompt.get(schema, function(err, result) {
       console.log('catch: ' + exception);
     })
   });
-
 });
 
-function saveFile(contractName, abi, address) {
-  var sabi = 'var abi = \'' + abi + '\';\n';
-  var sadd = 'var address = \'' + address + '\';\n';
-  var finn = 'module.exports = {abi: abi, address: address};\n';
-  var all = sabi + sadd + finn;
-  fs.writeFileSync(contractName + '.js', all);
-}

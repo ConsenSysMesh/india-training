@@ -54,7 +54,7 @@ Prompt.get(schema, function(err, result) {
 
   var input = {'Input': contractCode}
   var output = solc.compile({sources: input}, 1);
-  if (typeof output.errors != 'undefined') {
+  if (typeof output.errors !== 'undefined') {
     console.log(JSON.stringify(output.errors));
     process.exit();
   }
@@ -107,9 +107,9 @@ Prompt.get(schema, function(err, result) {
 });
 
 function saveFile(contractName, abi, address) {
-  var sabi = 'var abi = \'' + abi + '\';\n';
-  var sadd = 'var address = \'' + address + '\';\n';
-  var finn = 'module.exports = {abi: abi, address: address};\n';
-  var all = sabi + sadd + finn;
+  var sabi = 'window.contractAbi = \'' + abi + '\';\n';
+  var sadd = 'window.contractAddress = \'' + address + '\';\n';
+  //var finn = 'module.exports = {abi: abi, address: address};\n';
+  var all = sabi + sadd;// + finn;
   fs.writeFileSync(contractName + '.js', all);
 }
