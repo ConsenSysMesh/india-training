@@ -86,6 +86,6 @@ interface AbstractMultiSig {
    * @returns 0: if signer has not voted yet in this proposal, 1: if signer
    * has voted YES in this proposal, 2: if signer has voted NO in this proposal
    */
-  function getSignerVote(address _signer, address _beneficiary) external returns(uint);
+  function getSignerVote(address _signer, address _beneficiary) view external returns(uint);
 
 }
