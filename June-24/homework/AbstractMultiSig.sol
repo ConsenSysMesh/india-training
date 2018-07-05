@@ -67,7 +67,7 @@ interface AbstractMultiSig {
    * Reject the proposal of the given beneficiary
    */
   function reject(address _beneficiary) external;
-  event ProposalRejected(address indexed _approver, address indexed _beneficiary, uint _valueInWei);
+  event ProposalRejected(address indexed _rejecter, address indexed _beneficiary, uint _valueInWei);
 
   /*
    * Withdraw the specified value in Wei from the wallet.
@@ -78,5 +78,14 @@ interface AbstractMultiSig {
    */
   function withdraw(uint _valueInWei) external;
   event WithdrawPerformed(address indexed _beneficiary, uint _valueInWei);
+
+  /*
+   * Returns whether a given signer has voted in the given proposal and if so,
+   * what was his/her vote.
+   *
+   * @returns 0: if signer has not voted yet in this proposal, 1: if signer
+   * has voted YES in this proposal, 2: if signer has voted NO in this proposal
+   */
+  function getSignerVote(address _signer, address _beneficiary) external returns(uint);
 
 }
